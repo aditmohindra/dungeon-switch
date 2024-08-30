@@ -294,15 +294,15 @@ animations = [{
 "speed": 7.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 1.1,
 "texture": ExtResource("45_5km8c")
 }, {
-"duration": 1.0,
+"duration": 0.9,
 "texture": ExtResource("46_nbsim")
 }],
 "loop": true,
 "name": &"slide",
-"speed": 4.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -379,9 +379,8 @@ script = ExtResource("1_n1vyt")
 position = Vector2(-1.5, -1.5)
 scale = Vector2(0.84375, 0.8125)
 sprite_frames = SubResource("SpriteFrames_2jgva")
-animation = &"jump"
+animation = &"slide"
 autoplay = "idle"
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 1)
