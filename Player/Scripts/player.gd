@@ -19,7 +19,7 @@ var sword_unsheathed: bool = false  # Variable to track if the sword is unsheath
 var slide_timer: float = 0.0  # Timer to track slide duration
 var dash_cooldown_timer: float = 0.0  # Timer to track dash cooldown
 
-enum States {IDLE, WALK, JUMP, SLIDE, DASH, SWORDED, UNSWORDED}
+enum States {IDLE, WALK, JUMP, SLIDE, DASH, SWORDED, UNSWORDED, ATTACK}
 
 var state_names = {
 	States.IDLE: "IDLE",
@@ -28,7 +28,8 @@ var state_names = {
 	States.SLIDE: "SLIDE",
 	States.DASH: "DASH",
 	States.SWORDED: "SWORDED",
-	States.UNSWORDED: "UNSWORDED"
+	States.UNSWORDED: "UNSWORDED",
+	States.ATTACK: "ATTACK"
 }
 
 var state = States.IDLE
