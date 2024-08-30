@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var speed: float = 150.0
 @export var jump_velocity: float = -250.0
 @export var slide_velocity: float = 370.0  # Speed during slide
+@export var dash_distance: float = 50.0  # Distance for dash
+@export var dash_cooldown: float = 0.5  # Cooldown time between dashes
 @export var gravity_scale: float = 1.0  # Normal gravity scale
 @export var fall_gravity_scale: float = 1.43  # Increased gravity scale when falling
 @export var slide_duration: float = 0.05  # Shorter slide duration
@@ -15,14 +17,16 @@ var can_attack: bool = false
 var direction: float = 0.0
 var sword_unsheathed: bool = false  # Variable to track if the sword is unsheathed
 var slide_timer: float = 0.0  # Timer to track slide duration
+var dash_cooldown_timer: float = 0.0  # Timer to track dash cooldown
 
-enum States {IDLE, WALK, JUMP, SLIDE, SWORDED, UNSWORDED}
+enum States {IDLE, WALK, JUMP, SLIDE, DASH, SWORDED, UNSWORDED}
 
 var state_names = {
 	States.IDLE: "IDLE",
 	States.WALK: "WALK",
 	States.JUMP: "JUMP",
 	States.SLIDE: "SLIDE",
+	States.DASH: "DASH",
 	States.SWORDED: "SWORDED",
 	States.UNSWORDED: "UNSWORDED"
 }
@@ -50,6 +54,9 @@ func _physics_process(delta: float) -> void:
 	# Handle Slide
 	handle_slide(delta)
 	
+	# Handle Dash
+	handle_dash(delta)
+
 	# Handle stance switching
 	handle_stance()
 
@@ -80,7 +87,7 @@ func handle_movement() -> States:
 	direction = Input.get_axis("move_left", "move_right")
 	
 	if direction != 0:
-		if state != States.SLIDE:  # Prevent walking while sliding
+		if state != States.SLIDE and state != States.DASH:  # Prevent walking while sliding or dashing
 			change_state(States.WALK)
 			velocity.x = direction * speed
 	else:
@@ -92,14 +99,14 @@ func handle_movement() -> States:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
 	return state
-	
+
 func handle_slide(delta: float) -> States:
 	if Input.is_action_just_pressed("slide") and is_on_floor() and not animation_locked and state == States.WALK:
 		# Start the slide
 		change_state(States.SLIDE)
 		animation_locked = true
 		slide_timer = slide_duration
-		velocity.x = ( direction * slide_velocity ) * 0.53
+		velocity.x = direction * slide_velocity * 0.53
 		main_character.play("slide")
 	elif state == States.SLIDE:
 		# Continue sliding with consistent speed
@@ -114,6 +121,23 @@ func handle_slide(delta: float) -> States:
 				change_state(States.JUMP)
 	return state
 
+func handle_dash(delta: float) -> States:
+	dash_cooldown_timer -= delta
+	if Input.is_action_just_pressed("dash") and dash_cooldown_timer <= 0 and not animation_locked:
+		# Start the dash
+		change_state(States.DASH)
+		animation_locked = true
+		dash_cooldown_timer = dash_cooldown
+		# Teleport the player forward
+		position.x += direction * dash_distance
+		main_character.play("dash")  # Replace with your dash animation if you have one
+		print("Dashing")
+		animation_locked = false  # Unlock immediately after the dash
+		if is_on_floor():
+			change_state(States.IDLE)
+		else:
+			change_state(States.JUMP)
+	return state
 
 func handle_stance() -> States:
 	if Input.is_action_just_pressed("unsheathe") and not animation_locked and direction == 0:
@@ -156,6 +180,8 @@ func update_animation():
 				main_character.play("jump")
 		States.SLIDE:
 			main_character.play("slide")
+		States.DASH:
+			main_character.play("dash")  # Play dash animation if you have one
 		States.SWORDED:
 			main_character.play("idle_sword")
 

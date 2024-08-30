@@ -1,3 +1,4 @@
-res://player.tscn
 res://game.tscn
+res://player.tscn
 res://Player/Scripts/player.gd
+res://Player/Scripts/camera_2d.gd
