@@ -1,0 +1,8 @@
+res://game.tscn
+res://player.tscn
+res://Player/Scripts/player.gd
+res://game.gd
+res://player.gd
+res://camera_2d.gd
+res://Player/Scripts/camera_2d.gd
+res://cloud_layer.gd
