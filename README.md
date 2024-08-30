@@ -4,11 +4,12 @@
 
 ## Game Controls
 
-Arrow Keys - Move \
-Q - Basic Attacks \
-Hold Q - Charge Attack \
-E - Special Attack *Not Yet Implemented) \ 
-Tab - Change Class 
+WASD - Move \
+Mouse - Basic Attacks (Not Yet Implemented) \
+Right Mouse - Special Attack (Not Yet Implemented) \
+Shift - Movement Ability 1
+Alt - Movement Ability 2
+Tab - Change Class (Not Yet Implemented)
 
 ## Game Ideas
 
