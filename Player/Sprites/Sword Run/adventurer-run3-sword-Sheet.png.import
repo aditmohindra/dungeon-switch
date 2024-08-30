@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nles6k42xuad"
-path="res://.godot/imported/demon-idle.png-12f6c800be999024ad86a4e9aa8af699.ctex"
+uid="uid://87sswnamywjj"
+path="res://.godot/imported/adventurer-run3-sword-Sheet.png-9cac43758202542901e4adcbad654f6b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Sprites/demon-idle.png"
-dest_files=["res://.godot/imported/demon-idle.png-12f6c800be999024ad86a4e9aa8af699.ctex"]
+source_file="res://Player/Sprites/Sword Run/adventurer-run3-sword-Sheet.png"
+dest_files=["res://.godot/imported/adventurer-run3-sword-Sheet.png-9cac43758202542901e4adcbad654f6b.ctex"]
 
 [params]
 

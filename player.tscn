@@ -1,6 +1,6 @@
-[gd_scene load_steps=53 format=3 uid="uid://be0lp74t3370o"]
+[gd_scene load_steps=66 format=3 uid="uid://be0lp74t3370o"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_n1vyt"]
+[ext_resource type="Script" path="res://Player/Scripts/player.gd" id="1_n1vyt"]
 [ext_resource type="Texture2D" uid="uid://b7j4ksoq8uygr" path="res://Player/Sprites/Idle/adventurer-idle-00.png" id="2_45dyw"]
 [ext_resource type="Texture2D" uid="uid://p4nuxol6ieag" path="res://Player/Sprites/BasicAttack/adventurer-attack1-00.png" id="2_w1xia"]
 [ext_resource type="Texture2D" uid="uid://4cq11tdx100o" path="res://Player/Sprites/Idle/adventurer-idle-01.png" id="3_lrmhb"]
@@ -44,12 +44,58 @@
 [ext_resource type="Texture2D" uid="uid://c0dkhhbmsgaq5" path="res://Player/Sprites/Hurt/adventurer-hurt-00.png" id="26_c1gsc"]
 [ext_resource type="Texture2D" uid="uid://dqo6obc1jylf6" path="res://Player/Sprites/Hurt/adventurer-hurt-01.png" id="27_qwodg"]
 [ext_resource type="Texture2D" uid="uid://dnfi7f3rkevuk" path="res://Player/Sprites/Hurt/adventurer-hurt-02.png" id="28_v83j7"]
+[ext_resource type="Texture2D" uid="uid://cbduehil1i72b" path="res://Player/Sprites/SpriteSheet Player Full/adventurer-v1.5-Sheet.png" id="33_tshl2"]
 [ext_resource type="Texture2D" uid="uid://j7408tpmp6yq" path="res://Player/Sprites/Sheath/adventurer-swrd-shte-00.png" id="41_n3kqu"]
 [ext_resource type="Texture2D" uid="uid://dc03sxdkd681o" path="res://Player/Sprites/Sheath/adventurer-swrd-shte-01.png" id="42_q0qds"]
 [ext_resource type="Texture2D" uid="uid://4l8jnnyt5hld" path="res://Player/Sprites/Sheath/adventurer-swrd-shte-02.png" id="43_wuk2h"]
 [ext_resource type="Texture2D" uid="uid://ja56y4vo0xaf" path="res://Player/Sprites/Sheath/adventurer-swrd-shte-03.png" id="44_7yfy7"]
 [ext_resource type="Texture2D" uid="uid://cm1pj80k0f1hn" path="res://Player/Sprites/Slide/adventurer-slide-00.png" id="45_5km8c"]
 [ext_resource type="Texture2D" uid="uid://dcg2w0lnxshm1" path="res://Player/Sprites/Slide/adventurer-slide-01.png" id="46_nbsim"]
+[ext_resource type="Texture2D" uid="uid://87sswnamywjj" path="res://Player/Sprites/Sword Run/adventurer-run3-sword-Sheet.png" id="51_u14gf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4rdo"]
+atlas = ExtResource("33_tshl2")
+region = Rect2(0, 74, 48, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uchxe"]
+atlas = ExtResource("33_tshl2")
+region = Rect2(48, 74, 48, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhq2b"]
+atlas = ExtResource("33_tshl2")
+region = Rect2(96, 74, 48, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iybox"]
+atlas = ExtResource("33_tshl2")
+region = Rect2(48, 111, 48, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ks0n3"]
+atlas = ExtResource("33_tshl2")
+region = Rect2(96, 111, 48, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q118d"]
+atlas = ExtResource("51_u14gf")
+region = Rect2(0, 0, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwf7m"]
+atlas = ExtResource("51_u14gf")
+region = Rect2(50, 0, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7cex"]
+atlas = ExtResource("51_u14gf")
+region = Rect2(100, 0, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvyt6"]
+atlas = ExtResource("51_u14gf")
+region = Rect2(150, 0, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wrhw"]
+atlas = ExtResource("51_u14gf")
+region = Rect2(200, 0, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thma4"]
+atlas = ExtResource("51_u14gf")
+region = Rect2(250, 0, 50, 37)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2jgva"]
 animations = [{
@@ -183,20 +229,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_83fpp")
+"texture": SubResource("AtlasTexture_r4rdo")
 }, {
-"duration": 0.8,
-"texture": ExtResource("11_83fpp")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uchxe")
 }, {
-"duration": 0.7,
-"texture": ExtResource("10_4e3ux")
+"duration": 0.41,
+"texture": SubResource("AtlasTexture_yhq2b")
 }, {
-"duration": 0.2,
-"texture": ExtResource("10_4e3ux")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iybox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ks0n3")
 }],
 "loop": false,
 "name": &"jump",
-"speed": 9.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 0.7,
@@ -294,6 +343,29 @@ animations = [{
 "loop": true,
 "name": &"walk",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q118d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwf7m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7cex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvyt6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wrhw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_thma4")
+}],
+"loop": true,
+"name": &"walk_sworded",
+"speed": 12.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wdhb6"]
@@ -307,8 +379,9 @@ script = ExtResource("1_n1vyt")
 position = Vector2(-1.5, -1.5)
 scale = Vector2(0.84375, 0.8125)
 sprite_frames = SubResource("SpriteFrames_2jgva")
-animation = &"walk"
+animation = &"jump"
 autoplay = "idle"
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 1)

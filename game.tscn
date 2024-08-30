@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://d1v3qy2e8jay4" path="res://Player/Parallax/parallax-02.png" id="4_mbgfi"]
 [ext_resource type="Texture2D" uid="uid://c44kikjfrfvts" path="res://Player/Parallax/parallax-03.png" id="5_oad64"]
 [ext_resource type="Texture2D" uid="uid://l50hie7so0w7" path="res://Player/Parallax/parallax-04.png" id="9_oer7o"]
-[ext_resource type="Texture2D" uid="uid://nles6k42xuad" path="res://Player/Sprites/demon-idle.png" id="11_cw08u"]
+[ext_resource type="Texture2D" uid="uid://b7vmbxlv46gy2" path="res://Player/Tilesets/demon-idle.png" id="11_cw08u"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tta2n"]
 distance = -12.0
