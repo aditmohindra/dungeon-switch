@@ -1,0 +1,235 @@
+[gd_scene load_steps=39 format=3 uid="uid://cudrajswayhri"]
+
+[ext_resource type="PackedScene" uid="uid://be0lp74t3370o" path="res://player.tscn" id="1_32wil"]
+[ext_resource type="Script" path="res://Player/Scripts/game.gd" id="1_jcvuu"]
+[ext_resource type="Texture2D" uid="uid://8oqkr0micj2g" path="res://Player/Parallax/parallax-00.png" id="2_yfuwj"]
+[ext_resource type="Script" path="res://Player/Scripts/cloud_layer.gd" id="3_k7j8j"]
+[ext_resource type="Script" path="res://Player/Scripts/camera_2d.gd" id="3_mxql5"]
+[ext_resource type="Texture2D" uid="uid://dsq6crpgwtxvt" path="res://Player/Parallax/parallax-01.png" id="3_wjgjf"]
+[ext_resource type="Texture2D" uid="uid://d1v3qy2e8jay4" path="res://Player/Parallax/parallax-02.png" id="4_mbgfi"]
+[ext_resource type="Texture2D" uid="uid://c44kikjfrfvts" path="res://Player/Parallax/parallax-03.png" id="5_oad64"]
+[ext_resource type="Texture2D" uid="uid://l50hie7so0w7" path="res://Player/Parallax/parallax-04.png" id="9_oer7o"]
+[ext_resource type="PackedScene" uid="uid://ctph2u8uw5sge" path="res://enemy.tscn" id="11_1o74i"]
+[ext_resource type="PackedScene" uid="uid://dxgpbirm3nu75" path="res://boss.tscn" id="12_1xxc1"]
+[ext_resource type="Texture2D" uid="uid://bcqeas3a4dm0o" path="res://Player/Sprites/NPC Idle/Idle1.png" id="12_06om0"]
+[ext_resource type="Texture2D" uid="uid://yxbog61q7oh2" path="res://Player/Sprites/NPC Idle/Idle2.png" id="13_lgshd"]
+[ext_resource type="Texture2D" uid="uid://1q5hjvksejan" path="res://Player/Sprites/NPC Idle/Idle3.png" id="14_bca5i"]
+[ext_resource type="Texture2D" uid="uid://cxon5r5ctebgt" path="res://Player/Sprites/NPC Idle/Idle4.png" id="15_xi0ko"]
+[ext_resource type="Texture2D" uid="uid://cwp5tamcd70cj" path="res://Player/Sprites/NPC Idle/Idle5.png" id="16_mlvsh"]
+[ext_resource type="Texture2D" uid="uid://bv1ux56qhfuhe" path="res://Player/Sprites/NPC Idle/Idle6.png" id="17_jovwa"]
+[ext_resource type="Texture2D" uid="uid://dhafihjv8go32" path="res://Player/Sprites/NPC Idle/Idle7.png" id="18_5x3x0"]
+[ext_resource type="Texture2D" uid="uid://cr7axrni22k2u" path="res://Player/Sprites/NPC Idle/Idle8.png" id="19_sw8b5"]
+[ext_resource type="Texture2D" uid="uid://d1cowd15d63gi" path="res://Player/Sprites/NPC Idle/Idle9.png" id="20_p1wvp"]
+[ext_resource type="Texture2D" uid="uid://pks8fvjxwatl" path="res://Player/Sprites/Cursor/cursor.png" id="21_xhjoj"]
+[ext_resource type="Texture2D" uid="uid://dgja44k3u8pss" path="res://Player/Sprites/NPC2 Idle/Idle6.png" id="22_icts5"]
+[ext_resource type="Texture2D" uid="uid://dk82nqy3lg3k6" path="res://Player/Sprites/NPC2 Idle/Idle1.png" id="22_vfnob"]
+[ext_resource type="Script" path="res://Player/Scripts/cursor.gd" id="22_vva1r"]
+[ext_resource type="PackedScene" uid="uid://1ki18xs1knbx" path="res://tilemap.tscn" id="23_3pyaw"]
+[ext_resource type="Texture2D" uid="uid://bolnk2msykd3l" path="res://Player/Sprites/NPC2 Idle/Idle2.png" id="23_bj1gu"]
+[ext_resource type="Texture2D" uid="uid://c4nqbqh767tfx" path="res://Player/Sprites/NPC2 Idle/Idle3.png" id="24_cpcjb"]
+[ext_resource type="AudioStream" uid="uid://bcy0nrjv86a1" path="res://Music/Tweaky Potion Shop.wav" id="24_s5w8h"]
+[ext_resource type="PackedScene" uid="uid://qnu4xd5kkuw" path="res://barrel.tscn" id="24_sstcm"]
+[ext_resource type="Texture2D" uid="uid://b7nfeu0xqv3br" path="res://Player/Sprites/NPC2 Idle/Idle4.png" id="25_3xf3y"]
+[ext_resource type="Texture2D" uid="uid://c0pylm84ego7d" path="res://Player/Sprites/NPC2 Idle/Idle5.png" id="26_k5ssd"]
+
+[sub_resource type="GDScript" id="GDScript_qsv6j"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_voot0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_06om0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_lgshd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_bca5i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_xi0ko")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_mlvsh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_jovwa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_5x3x0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_sw8b5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_p1wvp")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y3y7l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_vfnob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_bj1gu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_cpcjb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_3xf3y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_k5ssd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_icts5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfvdc"]
+atlas = ExtResource("21_xhjoj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g7its"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfvdc")
+}],
+"loop": true,
+"name": &"cursor",
+"speed": 5.0
+}]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_01e1w"]
+distance = -22.0
+
+[sub_resource type="GDScript" id="GDScript_4yy5o"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_jcvuu")
+
+[node name="World" type="Node" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="World"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="World/ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(1440, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="World/ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("2_yfuwj")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="World/ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(1440, 0)
+script = ExtResource("3_k7j8j")
+
+[node name="Sprite2D" type="Sprite2D" parent="World/ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("3_wjgjf")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="World/ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1440, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="World/ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource("4_mbgfi")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="World/ParallaxBackground"]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(1440, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="World/ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource("5_oad64")
+
+[node name="Floor" type="Node2D" parent="World"]
+
+[node name="TileMapLayer" parent="World/Floor" instance=ExtResource("23_3pyaw")]
+
+[node name="Player" parent="World" instance=ExtResource("1_32wil")]
+position = Vector2(-1, 8)
+slide_duration = 0.835
+
+[node name="Barrel" parent="World" instance=ExtResource("24_sstcm")]
+position = Vector2(-217, 13)
+scale = Vector2(0.68, 0.68)
+script = SubResource("GDScript_qsv6j")
+
+[node name="Camera2D" type="Camera2D" parent="World"]
+offset = Vector2(0, -40.495)
+zoom = Vector2(5.135, 5.135)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+script = ExtResource("3_mxql5")
+player = NodePath("../Player")
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="World"]
+layer = 1
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="World/ParallaxBackground2"]
+motion_scale = Vector2(2, 0)
+motion_mirroring = Vector2(1440, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="World/ParallaxBackground2/ParallaxLayer"]
+texture = ExtResource("9_oer7o")
+offset = Vector2(0, 117.62)
+
+[node name="Enemy" parent="World" instance=ExtResource("11_1o74i")]
+position = Vector2(-390, -18)
+
+[node name="Boss" parent="World" instance=ExtResource("12_1xxc1")]
+position = Vector2(392, -29)
+
+[node name="NPC" type="AnimatedSprite2D" parent="World"]
+position = Vector2(-73, -6)
+sprite_frames = SubResource("SpriteFrames_voot0")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.141516
+
+[node name="NPC2" type="AnimatedSprite2D" parent="World"]
+position = Vector2(287, 9)
+scale = Vector2(0.59375, 0.59375)
+sprite_frames = SubResource("SpriteFrames_y3y7l")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.450236
+
+[node name="Cursor" type="AnimatedSprite2D" parent="World"]
+texture_filter = 1
+scale = Vector2(0.547, 0.55)
+sprite_frames = SubResource("SpriteFrames_g7its")
+animation = &"cursor"
+script = ExtResource("22_vva1r")
+
+[node name="BoundaryFloor" type="StaticBody2D" parent="World"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/BoundaryFloor"]
+shape = SubResource("WorldBoundaryShape2D_01e1w")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="World"]
+stream = ExtResource("24_s5w8h")
+volume_db = -0.99
+script = SubResource("GDScript_4yy5o")

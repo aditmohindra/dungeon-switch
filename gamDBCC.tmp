@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cudrajswayhri"]
+
+[ext_resource type="PackedScene" uid="uid://be0lp74t3370o" path="res://player.tscn" id="1_32wil"]
+[ext_resource type="Script" path="res://game.gd" id="1_jcvuu"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tta2n"]
+distance = -8.0
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_jcvuu")
+
+[node name="Player" parent="." instance=ExtResource("1_32wil")]
+position = Vector2(-1, 8)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3.765, 3.765)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 10)
+shape = SubResource("WorldBoundaryShape2D_tta2n")
+
+[node name="World" type="Node" parent="."]
+
+[node name="Level" type="Node" parent="World"]

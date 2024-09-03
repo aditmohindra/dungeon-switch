@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bcy0nrjv86a1"
+path="res://.godot/imported/Tweaky Potion Shop.wav-6281337f98584eaefd73488756b1fb26.sample"
+
+[deps]
+
+source_file="res://Music/Tweaky Potion Shop.wav"
+dest_files=["res://.godot/imported/Tweaky Potion Shop.wav-6281337f98584eaefd73488756b1fb26.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
