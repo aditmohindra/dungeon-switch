@@ -1,12 +1,12 @@
 extends ParallaxLayer
 
 @export var base_cloud_speed : float = 15.0
-@onready var main_character: AnimatedSprite2D = $MainCharacter
 
 func _ready():
-	print(main_character)
-	if main_character == null:
-		print("MainCharacter node not found!")
+	pass
+	#print(main_character)
+	#if main_character == null:
+		#print("MainCharacter node not found!")
 
 #
 #func _process(delta):

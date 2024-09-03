@@ -9,15 +9,21 @@ extends CharacterBody2D
 @export var gravity_scale: float = 1.0  # Normal gravity scale
 @export var fall_gravity_scale: float = 1.43  # Increased gravity scale when falling
 @export var slide_duration: float = 0.05  # Shorter slide duration
+@export var combo_timeout: float = 0.5  # Time window to chain the combo
+@export var can_attack: bool = false # Can attack?
 
+@onready var combo_timer: Timer = $ComboTimer
 @onready var main_character: AnimatedSprite2D = $MainCharacter
 
 var animation_locked: bool = false
-var can_attack: bool = false
 var direction: float = 0.0
 var sword_unsheathed: bool = false  # Variable to track if the sword is unsheathed
 var slide_timer: float = 0.0  # Timer to track slide duration
 var dash_cooldown_timer: float = 0.0  # Timer to track dash cooldown
+var combo_index: int = 0  # Tracks the current step in the combo
+var is_attacking: bool = false  # Tracks whether an attack is in progress
+
+@onready var slash: CollisionShape2D = $AttackArea/Slash
 
 enum States {IDLE, WALK, JUMP, SLIDE, DASH, SWORDED, UNSWORDED, ATTACK}
 
@@ -42,9 +48,11 @@ func add_gravity(delta: float) -> void:
 		else:  # Rising (jumping)
 			velocity += get_gravity() * gravity_scale * delta
 
+
 func _physics_process(delta: float) -> void:
 	# Add gravity
 	add_gravity(delta)
+	 
 
 	# Handle Jump
 	handle_jump()
@@ -60,6 +68,10 @@ func _physics_process(delta: float) -> void:
 
 	# Handle stance switching
 	handle_stance()
+	
+	# Handle attacking
+	slash.set_deferred("disabled", true)
+	handle_attack()
 
 	# Moves the body based on velocity
 	move_and_slide()
@@ -144,6 +156,7 @@ func handle_stance() -> States:
 	if Input.is_action_just_pressed("unsheathe") and not animation_locked and direction == 0:
 		if sword_unsheathed:
 			change_state(States.UNSWORDED)
+			speed += 30.0
 			main_character.play("sheathe")
 			animation_locked = true
 			# print("Sheathed...")
@@ -151,6 +164,7 @@ func handle_stance() -> States:
 			sword_unsheathed = false
 		else:
 			change_state(States.SWORDED)
+			speed = 150.0
 			main_character.play("unsheathe")
 			animation_locked = true
 			# print("Unsheathed!")
@@ -158,7 +172,54 @@ func handle_stance() -> States:
 			sword_unsheathed = true
 	
 	return state
+
+
+func handle_attack() -> States:
+	if Input.is_action_just_pressed("basic_attack") and can_attack and state != States.WALK:
+		if state != States.ATTACK:
+			change_state(States.ATTACK)
+			slash.set_deferred("disabled", false)  # Enable the collision shape at the start of the attack
+			play_attack_animation()
+		elif state == States.ATTACK and main_character.is_playing():
+			# Ensure the current animation has progressed sufficiently before starting the next one
+			if main_character.get_frame() >= main_character.sprite_frames.get_frame_count(main_character.animation) / 1.7:
+				play_attack_animation()
+		return state  # Prevent other states from being evaluated
+
+	# Check if the animation has finished
+	if state == States.ATTACK and not main_character.is_playing():
+		if combo_timer.time_left > 0:
+			play_attack_animation()  # Continue combo if timer is active
+		else:
+			reset_attack_state()  # Reset to the appropriate state after combo ends
 	
+	return state
+
+	
+func play_attack_animation():
+	# print("ATTACK!")
+	if combo_index == 0:
+		main_character.play("basic_attack")
+	elif combo_index == 1:
+		main_character.play("basic_attack_2")
+	elif combo_index == 2:
+		main_character.play("basic_attack_3")
+
+	combo_index = (combo_index + 1) % 3  # Cycle through the combo animations
+	combo_timer.start(combo_timeout)  # Start/reset the combo timer
+	animation_locked = true  # Lock the animation until it finishes
+
+
+func reset_attack_state():
+	animation_locked = false
+	combo_index = 0
+	slash.set_deferred("disabled", false)  # Disable the collision shape after the attack ends
+	if is_on_floor():
+		change_state(States.IDLE if not sword_unsheathed else States.SWORDED)
+	else:
+		change_state(States.JUMP)
+
+
 func update_animation():
 	if animation_locked:
 		return  # Prevent any other animation from playing if an animation is locked
@@ -185,6 +246,8 @@ func update_animation():
 			main_character.play("dash")  # Play dash animation if you have one
 		States.SWORDED:
 			main_character.play("idle_sword")
+		States.ATTACK:
+			pass
 
 func update_facing_direction():
 	if direction > 0:
@@ -202,7 +265,6 @@ func change_state(new_state: States) -> void:
 		prev_state = state
 		state = new_state
 		print("State changed to: ", state_names[state])
-
 
 func _on_main_character_animation_finished():
 	animation_locked = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://be0lp74t3370o"]
+[gd_scene load_steps=70 format=3 uid="uid://be0lp74t3370o"]
 
 [ext_resource type="Script" path="res://Player/Scripts/player.gd" id="1_n1vyt"]
 [ext_resource type="Texture2D" uid="uid://b7j4ksoq8uygr" path="res://Player/Sprites/Idle/adventurer-idle-00.png" id="2_45dyw"]
@@ -52,6 +52,7 @@
 [ext_resource type="Texture2D" uid="uid://cm1pj80k0f1hn" path="res://Player/Sprites/Slide/adventurer-slide-00.png" id="45_5km8c"]
 [ext_resource type="Texture2D" uid="uid://dcg2w0lnxshm1" path="res://Player/Sprites/Slide/adventurer-slide-01.png" id="46_nbsim"]
 [ext_resource type="Texture2D" uid="uid://87sswnamywjj" path="res://Player/Sprites/Sword Run/adventurer-run3-sword-Sheet.png" id="51_u14gf"]
+[ext_resource type="Script" path="res://Player/Scripts/attack_area.gd" id="53_n37ei"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bgrqb"]
 atlas = ExtResource("33_tshl2")
@@ -151,13 +152,13 @@ animations = [{
 "speed": 11.0
 }, {
 "frames": [{
-"duration": 1.1,
+"duration": 1.0,
 "texture": ExtResource("13_6ukko")
 }, {
-"duration": 1.2,
+"duration": 1.0,
 "texture": ExtResource("14_xnsdo")
 }, {
-"duration": 0.9,
+"duration": 1.0,
 "texture": ExtResource("15_x7cfa")
 }, {
 "duration": 1.0,
@@ -166,7 +167,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("17_jv4j1")
 }, {
-"duration": 1.1,
+"duration": 1.0,
 "texture": ExtResource("18_qj2ig")
 }],
 "loop": false,
@@ -391,6 +392,10 @@ animations = [{
 radius = 9.7561
 height = 25.3659
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0yau4"]
+radius = 7.0
+height = 40.0
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_n1vyt")
 
@@ -400,10 +405,22 @@ scale = Vector2(0.84375, 0.8125)
 sprite_frames = SubResource("SpriteFrames_2jgva")
 animation = &"basic_attack"
 autoplay = "idle"
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 1)
 scale = Vector2(1.025, 1.025)
 shape = SubResource("CapsuleShape2D_wdhb6")
 
+[node name="AttackArea" type="Area2D" parent="." groups=["Sword"]]
+script = ExtResource("53_n37ei")
+
+[node name="Slash" type="CollisionShape2D" parent="AttackArea" groups=["Sword"]]
+position = Vector2(17, -4)
+shape = SubResource("CapsuleShape2D_0yau4")
+
+[node name="ComboTimer" type="Timer" parent="."]
+wait_time = 0.056
+
 [connection signal="animation_finished" from="MainCharacter" to="." method="_on_main_character_animation_finished"]
+[connection signal="area_entered" from="AttackArea" to="AttackArea" method="_on_area_entered"]

@@ -1,4 +1,11 @@
 res://game.tscn
 res://player.tscn
+res://tilemap.tscn
+res://barrel.tscn
+res://boss.tscn
 res://Player/Scripts/player.gd
-res://Player/Scripts/camera_2d.gd
+res://Player/Scripts/attack_area.gd
+res://enemy.tscn
+res://barrel_area.gd
+res://Player/Scripts/cloud_layer.gd
+res://test.tscn
