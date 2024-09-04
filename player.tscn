@@ -398,6 +398,7 @@ height = 40.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_n1vyt")
+jump_velocity = -270.0
 
 [node name="MainCharacter" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1.5, -1.5)

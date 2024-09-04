@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://ctph2u8uw5sge"]
+[gd_scene load_steps=57 format=3 uid="uid://ctph2u8uw5sge"]
 
 [ext_resource type="Texture2D" uid="uid://btqu0nqk3cppk" path="res://Player/Sprites/Evil Wizard/Idle.png" id="1_7hyc6"]
 [ext_resource type="Texture2D" uid="uid://cvj2187rphxes" path="res://Player/Sprites/Evil Wizard/Attack1.png" id="1_nhx46"]
@@ -374,6 +374,10 @@ animations = [{
 "speed": 9.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dw6nu"]
+radius = 20.0
+height = 56.0
+
 [node name="Enemy" type="Node2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -385,3 +389,5 @@ frame_progress = 0.679519
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 14)
+shape = SubResource("CapsuleShape2D_dw6nu")

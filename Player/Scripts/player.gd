@@ -173,9 +173,8 @@ func handle_stance() -> States:
 	
 	return state
 
-
 func handle_attack() -> States:
-	if Input.is_action_just_pressed("basic_attack") and can_attack and state != States.WALK:
+	if Input.is_action_just_pressed("basic_attack") and can_attack and state != States.WALK and is_on_floor():
 		if state != States.ATTACK:
 			change_state(States.ATTACK)
 			slash.set_deferred("disabled", false)  # Enable the collision shape at the start of the attack

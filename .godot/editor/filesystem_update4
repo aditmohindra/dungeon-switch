@@ -1,4 +1,4 @@
 res://player.tscn
-res://barrel.tscn
 res://game.tscn
-res://Player/Scripts/player.gd
+res://enemy.tscn
+res://Player/Scripts/camera_2d.gd
